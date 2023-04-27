@@ -10,15 +10,28 @@ function writeToScreen(message) {
    pre.style.wordWrap = "break-word";
    pre.innerHTML = message;
    output.appendChild(pre);
-   
-   websocket = new WebSocket(wsUri);
-   websocket.onmessage = function(evt){
-   writeToScreen('<span>' + evt.data + '</span>');
-  }
 }
+
 sendButton.addEventListener('click', () => {
-  const input = document.getElementById('input').value;
-  const message = "Отправитель: " + input;
-  writeToScreen(message);
-  websocket.send(message);
+   websocket = new WebSocket(wsUri);
+   websocket.onopen = function (evt) {
+      writeToScreen("CONNECTED");
+   };
+
+   const input = document.getElementById('input').value;
+   const message = "Отправитель: " + input;
+   writeToScreen(message);
+   websocket.send(message);
+
+   websocket.onmessage = function (evt) {
+      writeToScreen(
+         '<span style="color: blue;">RESPONSE: ' + evt.data + '</span>'
+      );
+   };
+   websocket.onerror = function (evt) {
+      writeToScreen(
+         '<span style="color: red;">ERROR:</span> ' + evt.data
+      );
+   };
+
 });
