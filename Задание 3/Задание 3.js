@@ -10,6 +10,11 @@ function writeToScreen(message) {
    pre.style.wordWrap = "break-word";
    pre.innerHTML = message;
    output.appendChild(pre);
+   
+   websocket = new WebSocket(wsUri);
+   websocket.onmessage = function(evt){
+   writeToScreen('<span>' + evt.data + '</span>');
+  }
 }
 sendButton.addEventListener('click', () => {
   const input = document.getElementById('input').value;
