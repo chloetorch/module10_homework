@@ -11,10 +11,9 @@ function writeToScreen(message) {
    pre.innerHTML = message;
    output.appendChild(pre);
 }
-
 sendButton.addEventListener('click', () => {
-   const message = 'Test message';
-   writeToScreen("SENT: " + message);
-   websocket.send(message);
+  const input = document.getElementById('input').value;
+  const message = "Отправитель: " + input;
+  writeToScreen(message);
+  websocket.send(message);
 });
-
