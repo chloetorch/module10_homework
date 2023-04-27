@@ -1,6 +1,6 @@
 const wsUri = 'wss://echo-ws-service.herokuapp.com';
 
-const sendButton = document.querySelector('btn-send'); // const button = document.querySelector('#sendMe');
+const sendButton = document.querySelector('btn-send'); 
 const geolocationButton = document.querySelector('btn-geo');
 
 let websocket;
