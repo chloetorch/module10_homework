@@ -19,13 +19,13 @@ function writeToScreen(message) {
 
 sendButton.addEventListener('click', () => {
   const input = document.getElementById('input').value;
- const message = "Отправитель: " + input;
+  const message = "Отправитель: " + input;
   writeToScreen(message);
   websocket.send(message);
     
     websocket.onmessage = function(evt) {
     writeToScreen(
-      '<span style="color: blue;">RESPONSE: ' + evt.data+'</span>'
+      '<span style="color: blue;">RESPONSE: ' + evt.data + '</span>'
     );
   };
   websocket.onerror = function(evt) {
