@@ -7,7 +7,7 @@ let websocket;
 
 websocket = new WebSocket(wsUri);
 websocket.onopen = function(evt) {
-  writeToScreen("CONNECTED");
+  // writeToScreen("CONNECTED");
 };
 
 function writeToScreen(message) {
@@ -19,13 +19,13 @@ function writeToScreen(message) {
 
 sendButton.addEventListener('click', () => {
   const input = document.getElementById('input').value;
-  const message = "Отправитель: " + input;
-  writeToScreen(message);
+  const message = input;
+  writeToScreen("Отправитель: " + message);
   websocket.send(message);
     
     websocket.onmessage = function(evt) {
     writeToScreen(
-      '<span style="color: blue;">RESPONSE: ' + evt.data + '</span>'
+      '<span">Сервер: ' + evt.data + '</span>'
     );
   };
   websocket.onerror = function(evt) {
