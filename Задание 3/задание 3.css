@@ -20,5 +20,6 @@ p {
 
 .output {
   width: 600px;
-  height: 200px; 
+  height: 200px;
+  overflow: auto;
 }
